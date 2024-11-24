@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Echelon</title>
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <style>
+        /* Global Styles */
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            color: white;
+        }
+
+        /* Background Video */
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            background-color: #000;
+        }
+
+        /* Navbar */
+        nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            z-index: 1;
+        }
+
+        nav .logo {
+            margin-left: auto;
+        }
+
+        nav .logo img {
+            width: 300px;
+            height: auto;
+            max-height: 150px;
+        }
+
+        nav a {
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Hero Section */
+        .hero {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            margin: 0;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero p {
+            font-size: 22px;
+            margin-top: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+        }
+
+        /* Footer */
+        footer {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 40px 20px;
+            text-align: center;
+            color: white;
+        }
+
+        footer h2 {
+            font-size: 26px;
+            margin-bottom: 20px;
+            color: #ff7f50;
+        }
+
+        footer form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        footer label {
+            font-size: 16px;
+            text-align: left;
+        }
+
+        footer input,
+        footer select,
+        footer textarea,
+        footer button {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        footer input,
+        footer select,
+        footer textarea {
+            background-color: #333;
+            color: #fff;
+        }
+
+        footer button {
+            background-color: #ff7f50;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        footer button:hover {
+            background-color: #e0664b;
+        }
+
+        footer textarea {
+            resize: none;
+        }
+
+        footer p {
+            margin-top: 20px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 10px 20px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            footer form {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Background Video -->
+    <video autoplay muted loop playsinline class="bg-video">
+        <source src="{{ url_for('static', filename='videos/echelon_intro.mp4') }}" type="video/mp4">
+        <img src="{{ url_for('static', filename='images/fallback.jpg') }}" alt="Fallback Image">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Navbar -->
+    <nav>
+        <div>
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('projects') }}">Projects</a>
+            <a href="{{ url_for('gallery') }}">Gallery</a>
+            <a href="{{ url_for('team') }}">Team</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+            <a href="{{ url_for('clubacheivements') }}">Clubacheivements</a>
+        </div>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Echelon Logo">
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div>
+            <h1>Welcome to Echelon</h1>
+            <p>Where innovation meets creativity.</p>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <h2>Register Here</h2>
+        <form action="{{ url_for('home') }}" method="post">
+            <label for="username">Username: <span style="color: red;">*</span></label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="roll_number">Roll Number: <span style="color: red;">*</span></label>
+            <input type="text" id="roll_number" name="roll_number" required>
+
+            <label for="email">Email: <span style="color: red;">*</span></label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="department">Department: <span style="color: red;">*</span></label>
+            <select id="department" name="department" required>
+                <option value="">-- Select Department --</option>
+                <option value="ECE">ECE</option>
+                <option value="AI">AI</option>
+                <option value="CSE">CSE</option>
+                <option value="CSE DS">CSE DS</option>
+                <option value="AIML">AI & ML</option>
+                <option value="MBA">MBA</option>
+                <option value="AIDS">AIDS</option>
+            </select>
+
+            <label for="skills">Skills:</label>
+            <input type="text" id="skills" name="skills">
+
+            <label for="reason">Why do you want to join the club?</label>
+            <textarea id="reason" name="reason" rows="4"></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+        <p>&copy; 2024 ECHELON. ECE Department - Vidya Jyothi Institute of Technology (VJIT)</p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects and Tools</title>
+    <style>
+        /* Global Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #100f0f;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .menu {
+            display: flex;
+        }
+
+        /* Page Heading */
+        .heading {
+            text-align: center;
+            margin: 80px 0 20px;
+            font-size: 32px;
+            font-weight: bold;
+            background-color: #333;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        /* Section Buttons */
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 20px 0;
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .category-btn {
+            padding: 10px 20px;
+            background-color: #868686;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 1px solid #333;
+        }
+
+        .category-btn:hover {
+            background-color: #333;
+            color: white;
+        }
+
+        /* Section Content */
+        .section {
+            display: none;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        /* Tools Section Cards */
+        .tool-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .tool-card {
+            width: 300px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tool-card img {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 15px;
+        }
+
+        .tool-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .tool-card p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .tool-card a {
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+
+        .tool-card a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        // JavaScript to handle section switching and remember last viewed section
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.style.display = 'none');
+
+            // Show the selected section
+            document.getElementById(sectionId).style.display = 'block';
+
+            // Save the current section in localStorage
+            localStorage.setItem('activeSection', sectionId);
+        }
+
+        // Load the last viewed section on page load
+        window.onload = function() {
+            const lastSection = localStorage.getItem('activeSection') || 'tools-utilized';
+            showSection(lastSection);
+        };
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="menu">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('projects') }}">Projects</a>
+            <a href="{{ url_for('gallery') }}">gallery</a>
+            <a href="{{ url_for('contact') }}">Contact</a>
+            <a href="{{ url_for('clubacheivements') }}">Clubacheivements</a>
+
+        </div>
+    </nav>
+
+    <!-- Page Heading Removed -->
+<!-- <div class="heading">Projects and Tools</div> -->
+    <!-- Section Buttons -->
+<div class="categories" style="margin-top: 60px;">
+    <button class="category-btn" onclick="showSection('tools-utilized')">Tools Utilized</button>
+    <button class="category-btn" onclick="showSection('upcoming-projects')">Upcoming Projects</button>
+    <button class="category-btn" onclick="showSection('completed-projects')">Completed Projects</button>
+</div>
+
+
+    <!-- Tools Section -->
+<div id="tools-utilized" class="section">
+    <h3>Tools Utilized</h3>
+    <div class="tool-section">
+        <!-- Arduino IDE Card -->
+        <div class="tool-card">
+            <img src="static/images/arduino_logo.jpg" alt="Arduino IDE">
+            <h3>Arduino IDE</h3>
+            <p>An open-source platform for programming Arduino boards with an easy-to-use environment.</p>
+            <a href="https://www.arduino.cc/en/software" target="_blank">Learn More</a>
+        </div>
+
+        <!-- Xilinx Card -->
+        <div class="tool-card">
+            <img src="static/images/xilinx_logo.png" alt="Xilinx">
+            <h3>Xilinx</h3>
+            <p>Software for designing and simulating FPGA-based systems with advanced programmable logic.</p>
+            <a href="https://www.xilinx.com/" target="_blank">Learn More</a>
+        </div>
+
+        <!-- Vivado Card -->
+        <div class="tool-card">
+            <img src="static/images/vivado_logo.jpg" alt="Vivado">
+            <h3>Vivado</h3>
+            <p>A tool suite for high-performance system design and debugging of Xilinx FPGAs.</p>
+            <a href="https://www.xilinx.com/products/design-tools/vivado.html" target="_blank">Learn More</a>
+        </div>
+
+        <!-- Thonny Card -->
+        <div class="tool-card">
+            <img src="static/images/thonny_logo.png" alt="Thonny IDE">
+            <h3>Thonny</h3>
+            <p>A beginner-friendly IDE for Python programming with a simple and clear interface.</p>
+            <a href="https://thonny.org/" target="_blank">Learn More</a>
+        </div>
+    </div>
+</div>
+    <!-- Completed Projects Section -->
+<div id="completed-projects" class="section">
+    <h3>Completed Projects</h3>
+    <ul>
+        <li><strong>VLSI based Smart Home Automation</strong></li>
+        <li><strong>WiFi Car</strong></li>
+    </ul>
+</div>
+
+<!-- Upcoming Projects Section -->
+<div id="upcoming-projects" class="section">
+    <h3>Upcoming Projects</h3>
+    <ul>
+        <li><strong>Mantra Vahaka LokPal-01 [Smart Rover]</strong></li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club Achievements</title>
+    <style>
+        /* Global Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding-top: 60px; /* Added padding-top to compensate for the fixed navbar height */
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #100f0f;
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .menu {
+            display: flex;
+        }
+
+        /* Dropdown Menu - Vertical Layout */
+        .dropdown {
+            position: relative;
+            margin-bottom: 20px; /* Added more space between dropdowns */
+        }
+
+        .btn {
+            padding: 15px 30px;
+            background-color: #868686;
+            font-size: 18px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 1px solid #333;
+            width: 100%; /* Full width */
+            max-width: 300px; /* Optional: limits button width */
+            margin: 10px 0; /* Add margin to space between buttons */
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 200px;
+            z-index: 1;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            margin-top: 5px;
+            padding: 10px 0; /* Add padding for better spacing of dropdown items */
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 20px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Section Content */
+        .section {
+            display: none;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+    </style>
+    <script> 
+        // JavaScript to handle section switching and remember last viewed section
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => section.style.display = 'none');
+
+            // Show the selected section
+            document.getElementById(sectionId).style.display = 'block';
+
+            // Save the current section in localStorage
+            localStorage.setItem('activeSection', sectionId);
+        }
+
+        // Load the last viewed section on page load
+        window.onload = function() {
+            const lastSection = localStorage.getItem('activeSection') || 'tools-utilized';
+            showSection(lastSection);
+        };
+    </script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="menu">
+            <a href="{{ url_for('home') }}">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="{{ url_for('projects') }}">Projects</a>
+            <a href="{{ url_for('gallery') }}">Gallery</a>
+            <a href="{{ url_for('contact') }}">Contact</a>        
+        </div>
+    </nav>
+
+   <!-- Dropdown for Projects (Stacked vertically) -->
+    <div class="dropdown">
+        <button class="btn">Projects</button>
+        <div class="dropdown-content">
+            <a href="Over Projects">Over Projects</a>
+            <a href="Tools">Tools</a>
+            <a href="Upcoming Projects">Upcoming Projects</a>
+            <a href="Components">Components</a>
+        </div>
+    </div>
+
+    <!-- Dropdown for Research Papers & Books (Stacked vertically) -->
+    <div class="dropdown">
+        <button class="btn">Research Papers & Books</button>
+        <div class="dropdown-content">
+            <a href="Voice-Controlled -- EFY">Voice-Controlled -- EFY</a>
+            <a href="Smart Rover --I-managers">Smart Rover --I-managers</a>
+            <a href="IOT Revolution Book">IOT Revolution Book</a>
+        </div>
+    </div>
+
+</body>
+</html>
