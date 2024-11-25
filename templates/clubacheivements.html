@@ -13,6 +13,25 @@
             background-color: #f4f4f4;
             color: #333;
             padding-top: 60px; /* Added padding-top to compensate for the fixed navbar height */
+            position: relative;
+            overflow: hidden; /* Prevents the body from scrolling */
+        }
+
+        /* Add the background image and scroll effect */
+        body {
+            background: url('your-image.jpg') no-repeat center center fixed; 
+            background-size: cover;
+            animation: scrollBackground 20s linear infinite;
+        }
+
+        /* Keyframes for background scroll */
+        @keyframes scrollBackground {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 0 100%;
+            }
         }
 
         /* Navbar */
@@ -25,7 +44,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #100f0f;
+            background-color: rgba(16, 15, 15, 0.8); /* Slightly transparent background to allow image visibility */
             z-index: 1000;
         }
 
@@ -48,7 +67,7 @@
         /* Dropdown Menu - Vertical Layout */
         .dropdown {
             position: relative;
-            margin-bottom: 20px; /* Added more space between dropdowns */
+            margin-bottom: 20px;
         }
 
         .btn {
@@ -58,9 +77,9 @@
             border-radius: 5px;
             cursor: pointer;
             border: 1px solid #333;
-            width: 100%; /* Full width */
-            max-width: 300px; /* Optional: limits button width */
-            margin: 10px 0; /* Add margin to space between buttons */
+            width: 100%;
+            max-width: 300px;
+            margin: 10px 0;
         }
 
         .dropdown-content {
@@ -71,7 +90,7 @@
             z-index: 1;
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
             margin-top: 5px;
-            padding: 10px 0; /* Add padding for better spacing of dropdown items */
+            padding: 10px 0;
         }
 
         .dropdown-content a {
@@ -131,7 +150,7 @@
         </div>
     </nav>
 
-   <!-- Dropdown for Projects (Stacked vertically) -->
+    <!-- Dropdown for Projects (Stacked vertically) -->
     <div class="dropdown">
         <button class="btn">Projects</button>
         <div class="dropdown-content">
@@ -151,6 +170,5 @@
             <a href="IOT Revolution Book">IOT Revolution Book</a>
         </div>
     </div>
-
 </body>
 </html>
