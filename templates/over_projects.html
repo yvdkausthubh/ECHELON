@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Over Projects</title>
+    <style>
+        /* Global Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f9;
+            color: #333;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: rgba(16, 15, 15, 0.8); /* Semi-transparent background */
+            z-index: 1000;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .menu {
+            display: flex;
+        }
+
+        /* Dropdown Styles */
+        .dropdown {
+            position: relative;
+            margin: 20px;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            background-color: #868686;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            color: white;
+            display: inline-block;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            background-color: #6c6c6c;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 200px;
+            z-index: 1;
+            box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+            margin-top: 5px;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Content Section */
+        .content {
+            margin-top: 150px; /* Space below the navbar */
+            padding: 20px;
+            text-align: center;
+        }
+
+        .projects {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .projects ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .projects ul li {
+            margin: 10px 0;
+            font-size: 18px;
+        }
+
+        .projects ul li:before {
+            content: '•';
+            color: #333;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="menu">
+            <a href="index.html">Home</a>
+            <a href="tools_utilized.html">Tools Utilized</a>
+            <a href="upcoming_projects.html">Upcoming Projects</a>
+            <a href="contact.html">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Content Section -->
+    <div class="content">
+        <h1>Over Projects</h1>
+        <div class="projects">
+            <h2>Over Projects:</h2>
+            <ul>
+                <li>Wi-Fi Car using NodeMCU</li>
+                <li>Smart Handbag</li>
+                <li>VLSI-based Smart Home Automation using FPGA and IoT</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

@@ -98,5 +98,9 @@ def team():
 def clubacheivements():
     return render_template('clubacheivements.html') # Renders the clubacheivements page
 
+@app.route("/over_projects")
+def over_projects():
+    return render_template("over_projects.html")
+
 if __name__ == '__main__':
     app.run(debug=True)

@@ -10,18 +10,10 @@
             margin: 0;
             padding: 0;
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            padding-top: 60px; /* Added padding-top to compensate for the fixed navbar height */
-            position: relative;
-            overflow: hidden; /* Prevents the body from scrolling */
-        }
-
-        /* Add the background image and scroll effect */
-        body {
-            background: url('your-image.jpg') no-repeat center center fixed; 
+            background: url('/static/images/achievements.jpeg') no-repeat center center fixed; 
             background-size: cover;
             animation: scrollBackground 20s linear infinite;
+            color: #333;
         }
 
         /* Keyframes for background scroll */
@@ -44,7 +36,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: rgba(16, 15, 15, 0.8); /* Slightly transparent background to allow image visibility */
+            background-color: rgba(16, 15, 15, 0.8); /* Semi-transparent background */
             z-index: 1000;
         }
 
@@ -64,22 +56,27 @@
             display: flex;
         }
 
-        /* Dropdown Menu - Vertical Layout */
+        /* Dropdown Styles */
         .dropdown {
             position: relative;
-            margin-bottom: 20px;
+            margin: 20px;
         }
 
         .btn {
             padding: 15px 30px;
             background-color: #868686;
-            font-size: 18px;
+            font-size: 16px;
             border-radius: 5px;
             cursor: pointer;
-            border: 1px solid #333;
-            width: 100%;
-            max-width: 300px;
-            margin: 10px 0;
+            border: none;
+            color: white;
+            display: inline-block;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            background-color: #6c6c6c;
         }
 
         .dropdown-content {
@@ -90,14 +87,14 @@
             z-index: 1;
             box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
             margin-top: 5px;
-            padding: 10px 0;
         }
 
         .dropdown-content a {
             color: black;
-            padding: 12px 20px;
+            padding: 10px 15px;
             text-decoration: none;
             display: block;
+            transition: background-color 0.3s;
         }
 
         .dropdown-content a:hover {
@@ -108,30 +105,63 @@
             display: block;
         }
 
-        /* Section Content */
+        /* Left-aligned Dropdowns */
+        .dropdowns {
+            position: fixed;
+            top: 80px; /* Below navbar */
+            left: 20px; /* Align to left corner */
+            z-index: 999;
+        }
+
+        /* Section Styles */
+        .content {
+            margin-top: 150px; /* Space below the dropdowns */
+            text-align: center;
+        }
+
         .section {
             display: none;
             padding: 20px;
             max-width: 1200px;
-            margin: 0 auto;
-            text-align: center;
+            margin: 20px auto;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+        }
+
+        .section h2 {
+            margin-top: 0;
+        }
+
+        .visible {
+            display: block !important;
+        }
+
+        /* Image Styling */
+        .image-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
     </style>
     <script> 
-        // JavaScript to handle section switching and remember last viewed section
+        // JavaScript to handle section switching and remember the last viewed section
         function showSection(sectionId) {
-            // Hide all sections
             const sections = document.querySelectorAll('.section');
-            sections.forEach(section => section.style.display = 'none');
+            sections.forEach(section => section.classList.remove('visible'));
 
-            // Show the selected section
-            document.getElementById(sectionId).style.display = 'block';
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) selectedSection.classList.add('visible');
 
-            // Save the current section in localStorage
             localStorage.setItem('activeSection', sectionId);
         }
 
-        // Load the last viewed section on page load
         window.onload = function() {
             const lastSection = localStorage.getItem('activeSection') || 'tools-utilized';
             showSection(lastSection);
@@ -150,24 +180,68 @@
         </div>
     </nav>
 
-    <!-- Dropdown for Projects (Stacked vertically) -->
-    <div class="dropdown">
-        <button class="btn">Projects</button>
-        <div class="dropdown-content">
-            <a href="Over Projects">Over Projects</a>
-            <a href="Tools">Tools</a>
-            <a href="Upcoming Projects">Upcoming Projects</a>
-            <a href="Components">Components</a>
+    <!-- Dropdown Content (Aligned Left) -->
+    <div class="dropdowns">
+        <!-- Dropdown for Projects -->
+        <div class="dropdown">
+            <button class="btn">Projects</button>
+            <div class="dropdown-content">
+                <a href="javascript:void(0)" onclick="showSection('over-projects')">Over Projects</a>
+                <a href="javascript:void(0)" onclick="showSection('tools-utilized')">Tools</a>
+                <a href="javascript:void(0)" onclick="showSection('upcoming-projects')">Upcoming Projects</a>
+                <a href="javascript:void(0)" onclick="showSection('components')">Components</a>
+            </div>
+        </div>
+
+        <!-- Dropdown for Research Papers & Books -->
+        <div class="dropdown">
+            <button class="btn">Research Papers & Books</button>
+            <div class="dropdown-content">
+                <a href="javascript:void(0)" onclick="showSection('voice-control')">Voice-Controlled -- EFY</a>
+                <a href="javascript:void(0)" onclick="showSection('smart-rover')">Smart Rover -- I-managers</a>
+                <a href="javascript:void(0)" onclick="showSection('iot-book')">IoT Revolution Book</a>
+            </div>
         </div>
     </div>
 
-    <!-- Dropdown for Research Papers & Books (Stacked vertically) -->
-    <div class="dropdown">
-        <button class="btn">Research Papers & Books</button>
-        <div class="dropdown-content">
-            <a href="Voice-Controlled -- EFY">Voice-Controlled -- EFY</a>
-            <a href="Smart Rover --I-managers">Smart Rover --I-managers</a>
-            <a href="IOT Revolution Book">IOT Revolution Book</a>
+    <!-- Sections -->
+    <div class="content">
+        <div id="over-projects" class="section">
+            <h2>Over Projects</h2>
+            <p>Details about over projects...</p>
+        </div>
+
+        <div id="tools-utilized" class="section visible">
+            <h2>Tools Utilized</h2>
+            <p>Details about tools...</p>
+            <div class="image-container">
+                <img src="/static/images/tools.jpg" alt="Tools Utilized">
+            </div>
+        </div>
+
+        <div id="upcoming-projects" class="section">
+            <h2>Upcoming Projects</h2>
+            <p>Details about upcoming projects...</p>
+        </div>
+
+        <div id="components" class="section">
+            <h2>Components</h2>
+            <p>Details about components...</p>
+        </div>
+
+        <div id="voice-control" class="section">
+            <h2>Voice-Controlled Project</h2>
+            <p>Details about the EFY voice-controlled project...</p>
+        </div>
+
+        <div id="smart-rover" class="section">
+            <h2>Smart Rover</h2>
+            <p>Details about Smart Rover...</p>
+        </div>
+
+        <div id="iot-book" class="section">
+            <h2>IoT Revolution Book</h2>
+            <p>Details about IoT book...</p>
         </div>
     </div>
 </body>
