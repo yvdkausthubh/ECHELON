@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Team</title>
-    <link rel="stylesheet" href="static/styles.css">  <!-- Add your styles.css path -->
+    <link rel="stylesheet" href="static/styles.css">
     <style>
         /* Global Styles */
         body, html {
@@ -68,7 +68,7 @@
             width: 100%;
             height: 200px; /* Ensure the photo is square */
             object-fit: cover;
-            border-radius: 10px; /* Optional: adds rounded corners */
+            border-radius: 10px;
         }
 
         .team-member h3 {
@@ -77,27 +77,66 @@
             color: white;
         }
 
-        /* Menu Styling */
-        nav ul {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-
-        nav ul li a {
+        /* Button Styling */
+        .read-more-btn {
+            background-color: #4CAF50;
             color: white;
-            text-decoration: none;
-            font-size: 1.1em;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            border-radius: 5px;
+            margin-top: 10px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
         }
 
-        nav ul li a:hover {
-            color: #f4f4f4;
+        .read-more-btn:hover {
+            background-color: #45a049;
+            transform: scale(1.05); /* Slightly enlarges the button */
+        }
+
+        .read-more-btn:focus {
+            outline: none;
+            box-shadow: 0 0 10px rgba(72, 202, 228, 0.5);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #333;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            color: white;
+            border-radius: 10px;
+        }
+
+        .close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            float: right;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
         }
     </style>
 </head>
@@ -116,63 +155,90 @@
     <h1>Meet Our Team</h1>
 
     <div class="team-container">
-        <!-- PS Neeraj -->
+        <!-- Team Member Entries -->
         <div class="team-member">
             <img src="{{ url_for('static', filename='images/ps_neeraj.png') }}" alt="PS Neeraj">
             <h3>PS Neeraj</h3>
             <h3>(President)</h3>
+            <button class="read-more-btn" onclick="openModal('PS Neeraj')">Read More</button>
         </div>
 
-        <!-- YVD Kausthubh -->
-<div class="team-member">
-    <img src="{{ url_for('static', filename='images/yvd_kausthubh.jpeg') }}" alt="YVD Kausthubh">
-    <h3>YVD Kausthubh</h3>
-    <h3>(Project Head)</h3>
-</div>
+        <div class="team-member">
+            <img src="{{ url_for('static', filename='images/yvd_kausthubh.jpeg') }}" alt="YVD Kausthubh">
+            <h3>YVD Kausthubh</h3>
+            <h3>(Project Head)</h3>
+            <button class="read-more-btn" onclick="openModal('YVD Kausthubh')">Read More</button>
+        </div>
 
-        <!-- K Harshit -->
         <div class="team-member">
             <img src="{{ url_for('static', filename='images/k_harshit.jpeg') }}" alt="K Harshit">
             <h3>K Harshit</h3>
-            <h3>(Project Head)</h3>
+            <h3>(Blogs Head)</h3>
+            <button class="read-more-btn" onclick="openModal('K Harshit')">Read More</button>
         </div>
 
-        <!-- KVN Manoj -->
         <div class="team-member">
             <img src="{{ url_for('static', filename='images/kvn_manoj.jpeg') }}" alt="KVN Manoj">
             <h3>KVN Manoj</h3>
             <h3>(Documentation Head)</h3>
+            <button class="read-more-btn" onclick="openModal('KVN Manoj')">Read More</button>
         </div>
 
-        <!-- E Vinay Kumar -->
         <div class="team-member">
             <img src="{{ url_for('static', filename='images/evinay_kumar.jpeg') }}" alt="E Vinay Kumar">
             <h3>E Vinay Kumar</h3>
+            <h3>(Blogs Head)</h3>
+            <button class="read-more-btn" onclick="openModal('E Vinay Kumar')">Read More</button>
         </div>
 
-        <!-- P Vijay -->
         <div class="team-member">
             <img src="{{ url_for('static', filename='images/p_vijay.jpg') }}" alt="P Vijay">
             <h3>P Vijay</h3>
+            <h3>(Photography Head)</h3>
+            <button class="read-more-btn" onclick="openModal('P Vijay')">Read More</button>
         </div>
 
-        <!-- Sankeerth -->
         <div class="team-member">
             <img src="{{ url_for('static', filename='images/sankeerth.jpeg') }}" alt="Sankeerth">
             <h3>Sankeerth</h3>
+            <h3>(Creativity Head)</h3>
+            <button class="read-more-btn" onclick="openModal('Sankeerth')">Read More</button>
         </div>
 
-        <!-- K Akshith -->
         <div class="team-member">
             <img src="{{ url_for('static', filename='images/k_Akshith.jpeg') }}" alt="K Akshith">
             <h3>K Akshith</h3>
+            <h3>(PR Head)</h3>
+            <button class="read-more-btn" onclick="openModal('K Akshith')">Read More</button>
         </div>
-      
-        <!-- K SAI PRANEETH -->
+
         <div class="team-member">
             <img src="{{ url_for('static', filename='images/ks_praneeth.jpg') }}" alt="K Sai Praneeth">
             <h3>K Sai Praneeth</h3>
+            <h3>(Photo Editing)</h3>
+            <button class="read-more-btn" onclick="openModal('K Sai Praneeth')">Read More</button>
         </div>
     </div>
+
+    <!-- Modal Structure -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Team Member Information</h2>
+            <p id="modal-description">More information will be displayed here.</p>
+        </div>
+    </div>
+
+    <script>
+        function openModal(memberName) {
+            // Set dynamic content for the modal based on the member name
+            document.getElementById('modal-description').innerText = "Details about " + memberName;
+            document.getElementById('modal').style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = "none";
+        }
+    </script>
 </body>
 </html>

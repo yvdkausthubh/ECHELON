@@ -88,6 +88,60 @@
             text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
         }
 
+        /* Register Button */
+        .btn-register {
+            display: inline-block;
+            padding: 12px 25px;
+            margin-top: 30px;
+            background-color: #ff7f50;
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .btn-register:hover {
+            background-color: #e0664b;
+            transform: scale(1.05);
+        }
+
+        /* Events Section */
+        .events-section {
+            width: 80%;
+            margin: 30px auto;
+        }
+
+        .event-slide {
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            flex-direction: column;
+        }
+
+        .event-slide img {
+            width: 80%;
+            max-height: 400px;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .event-slide h2 {
+            font-size: 2em;
+            color: #333;
+        }
+
+        .event-slide p {
+            font-size: 1.2em;
+            color: #555;
+        }
+
         /* Footer */
         footer {
             background-color: rgba(0, 0, 0, 0.8);
@@ -154,6 +208,48 @@
             color: rgba(255, 255, 255, 0.6);
         }
 
+        /* Popup Advertisement */
+        .popup-ad {
+            display: none; /* Initially hidden */
+            position: fixed; /* Position it fixed on the screen */
+            top: 0;
+            left: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent background */
+            z-index: 9999; /* Make sure it's on top of other content */
+            justify-content: center;
+            align-items: center;
+            display: flex; /* Use flexbox to center the content */
+            flex-direction: column;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Popup content (image and close button) */
+        .popup-ad img {
+            max-width: 100%;
+            max-height: 80%; /* Adjust the height as needed */
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .popup-ad .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: white;
+            font-size: 30px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 10000;
+        }
+
+        .popup-ad .close-btn:hover {
+            color: #ff7f50;
+        }
+
         /* Responsive Design */
         @media screen and (max-width: 768px) {
             nav {
@@ -193,7 +289,7 @@
             <a href="{{ url_for('gallery') }}">Gallery</a>
             <a href="{{ url_for('team') }}">Team</a>
             <a href="{{ url_for('contact') }}">Contact</a>
-            <a href="{{ url_for('clubacheivements') }}">Clubacheivements</a>
+           
         </div>
         <div class="logo">
             <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Echelon Logo">
@@ -205,44 +301,106 @@
         <div>
             <h1>Welcome to Echelon</h1>
             <p>Where innovation meets creativity.</p>
+            <a href="#registration-form" class="btn-register">Register Here</a>
+        </div>
+    </div>
+
+    <!-- Upcoming Events Section (without animation) -->
+    <div class="events-section">
+        <!-- Poster Launch -->
+        <div class="event-slide">
+            <img src="{{ url_for('static', filename='images/poster_launch_image.jpg') }}" alt="Poster Launch">
+            <h2>Poster Launch</h2>
+            <p>Date: 30th November</p>
+        </div>
+        <!-- Workshop Event -->
+        <div class="event-slide">
+            <img src="{{ url_for('static', filename='images/workshop_image.jpg') }}" alt="Workshop">
+            <h2>Workshop</h2>
+            <p>Date: 6th & 7th December</p>
+        </div>
+        <!-- Hackhathon -->
+        <div class="event-slide">
+            <img src="{{ url_for('static', filename='images/poster_launch_image.jpg') }}" alt="Poster Launch">
+            <h2>Hackhathon</h2>
+            <p>COMING SOON</p>
         </div>
     </div>
 
     <!-- Footer -->
     <footer>
-        <h2>Register Here</h2>
-        <form action="{{ url_for('home') }}" method="post">
-            <label for="username">Username: <span style="color: red;">*</span></label>
-            <input type="text" id="username" name="username" required>
+        <h2>Registration Form</h2>
+        <form id="registration-form" action="/submit-form" method="post" onsubmit="return validateForm()">
+            <label for="fullname">Full Name(*):</label>
+            <input type="text" id="fullname" name="fullname" required>
 
-            <label for="roll_number">Roll Number: <span style="color: red;">*</span></label>
-            <input type="text" id="roll_number" name="roll_number" required>
+            <label for="rollnumber">Roll Number(*):</label>
+            <input type="text" id="rollnumber" name="rollnumber" required>
 
-            <label for="email">Email: <span style="color: red;">*</span></label>
-            <input type="email" id="email" name="email" required>
-
-            <label for="department">Department: <span style="color: red;">*</span></label>
-            <select id="department" name="department" required>
-                <option value="">-- Select Department --</option>
-                <option value="ECE">ECE</option>
-                <option value="AI">AI</option>
-                <option value="CSE">CSE</option>
-                <option value="CSE DS">CSE DS</option>
-                <option value="AIML">AI & ML</option>
-                <option value="MBA">MBA</option>
-                <option value="AIDS">AIDS</option>
+            <label for="branch">Branch(*):</label>
+            <select id="branch" name="branch" required>
+                <option value="ece">ECE</option>
+                <option value="aiml">AI/ML</option>
+                <option value="aids">AIDS</option>
+                <option value="cseds">CSE DS</option>
+                <option value="cse">CSE</option>
+                <option value="ai">AI</option>
+                <option value="mech">Mechanical</option>
+                <option value="civil">Civil</option>
+                <option value="eee">EEE</option>
             </select>
 
             <label for="skills">Skills:</label>
-            <input type="text" id="skills" name="skills">
+            <textarea id="skills" name="skills" rows="4"></textarea>
 
-            <label for="reason">Why do you want to join the club?</label>
-            <textarea id="reason" name="reason" rows="4"></textarea>
+            <label for="reason">Why do you want to join the club(*):</label>
+            <textarea id="reason" name="reason" rows="4" required></textarea>
 
+            <p><em>(*) indicates important fields to fill</em></p>
+            
             <button type="submit">Submit</button>
         </form>
-        <p>&copy; 2024 ECHELON. ECE Department - Vidya Jyothi Institute of Technology (VJIT)</p>
+        <p>&copy; 2024 Echelon. All rights reserved.</p>
     </footer>
+
+    <!-- Popup Advertisement -->
+    <div id="popup-ad" class="popup-ad">
+        <img src="{{ url_for('static', filename='images/ad_image.jpeg') }}" alt="Advertisement">
+        <button id="close-btn" class="close-btn">X</button>
+    </div>
+
+    <script>
+        // Redirect to registration form when 'T' is pressed
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 't' || event.key === 'T') {
+                window.location.hash = '#registration-form';
+            }
+        });
+
+        // Form validation to ensure required fields are filled
+        function validateForm() {
+            const fullname = document.getElementById('fullname').value;
+            const rollnumber = document.getElementById('rollnumber').value;
+            const branch = document.getElementById('branch').value;
+            const reason = document.getElementById('reason').value;
+            
+            if (!fullname || !rollnumber || !branch || !reason) {
+                alert('Please fill all required fields.');
+                return false;
+            }
+            return true;
+        }
+
+        // Popup logic
+        window.onload = function () {
+            var popup = document.getElementById("popup-ad");
+            popup.style.display = "flex"; // Show the popup
+            var closeButton = document.getElementById("close-btn");
+            closeButton.onclick = function () {
+                popup.style.display = "none"; // Hide the popup when clicked
+            }
+        };
+    </script>
 </body>
 
 </html>

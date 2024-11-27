@@ -26,7 +26,7 @@ def home():
 
         # Validate form fields
         if not name or not email or not subject or not message:
-            return "Please fill in all fields."
+            return render_template('contact.html', error="Please fill in all fields.")
 
         # Create the email message
         msg = Message(subject, recipients=['echelonclub25@gmail.com'])  # Send to your email
@@ -68,7 +68,7 @@ def contact():
 
         # Validate form fields
         if not name or not email or not subject or not message:
-            return "Please fill in all fields."
+            return render_template('contact.html', error="Please fill in all fields.")
 
         # Create the email message
         msg = Message(subject, recipients=['echelonclub25@gmail.com'])  # Send to your email
@@ -86,21 +86,27 @@ def contact():
 # Thank You Route (after form submission)
 @app.route('/thank_you')
 def thank_you():
-    return 'Thank you for contacting us!'  # A simple thank-you message
+    return render_template('thank_you.html')  # A custom thank-you page
 
 # Team Route
 @app.route('/team')
 def team():
     return render_template('team.html')  # Renders the Team page
 
-#Clubacheivements Route
+# Club Achievements Route
 @app.route('/clubacheivements')
-def clubacheivements():
-    return render_template('clubacheivements.html') # Renders the clubacheivements page
+def clubachievements():
+    return render_template('clubacheivements.html')  # Renders the Club Achievements page
 
+# Over Projects Route
 @app.route("/over_projects")
 def over_projects():
-    return render_template("over_projects.html")
+    return render_template("over_projects.html")  # Renders the Over Projects page
+
+# Custom error handler for 404
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('404.html'), 404  # Custom 404 error page
 
 if __name__ == '__main__':
     app.run(debug=True)
