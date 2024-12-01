@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Echelon</title>
-    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link rel="icon" type="image/x-icon" href="static/images/favicon.ico">
     <style>
         /* Global Styles */
         body,
@@ -276,23 +276,22 @@
 <body>
     <!-- Background Video -->
     <video autoplay muted loop playsinline class="bg-video">
-        <source src="{{ url_for('static', filename='videos/echelon_intro.mp4') }}" type="video/mp4">
-        <img src="{{ url_for('static', filename='images/fallback.jpg') }}" alt="Fallback Image">
+        <source src="static/videos/echelon_intro.mp4" type="video/mp4">
+        <img src="static/images/fallback.jpg" alt="Fallback Image">
         Your browser does not support the video tag.
     </video>
 
     <!-- Navbar -->
     <nav>
         <div>
-            <a href="{{ url_for('home') }}">Home</a>
-            <a href="{{ url_for('about') }}">About</a>
-            <a href="{{ url_for('gallery') }}">Gallery</a>
-            <a href="{{ url_for('team') }}">Team</a>
-            <a href="{{ url_for('contact') }}">Contact</a>
-           
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="team.html">Team</a>
+            <a href="contact.html">Contact</a>
         </div>
         <div class="logo">
-            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Echelon Logo">
+            <img src="static/images/logo.png" alt="Echelon Logo">
         </div>
     </nav>
 
@@ -307,30 +306,26 @@
 
     <!-- Upcoming Events Section (without animation) -->
     <div class="events-section">
-        <!-- Poster Launch -->
         <div class="event-slide">
-            <img src="{{ url_for('static', filename='images/poster_launch_image.jpg') }}" alt="Poster Launch">
+            <img src="static/images/poster_launch_image.jpg" alt="Poster Launch">
             <h2>Poster Launch</h2>
             <p>Date: 30th November</p>
         </div>
-        <!-- Workshop Event -->
         <div class="event-slide">
-            <img src="{{ url_for('static', filename='images/workshop_image.jpg') }}" alt="Workshop">
+            <img src="static/images/workshop_image.jpg" alt="Workshop">
             <h2>Workshop</h2>
             <p>Date: 6th & 7th December</p>
         </div>
-        <!-- Hackhathon -->
         <div class="event-slide">
-            <img src="{{ url_for('static', filename='images/poster_launch_image.jpg') }}" alt="Poster Launch">
-            <h2>Hackhathon</h2>
+            <img src="static/images/poster_launch_image.jpg" alt="Hackathon">
+            <h2>Hackathon</h2>
             <p>COMING SOON</p>
         </div>
     </div>
 
     <footer>
         <h2>Registration Form</h2>
-        <form id="registration-form" action="{{ url_for('register') }}" method="POST" onsubmit="return validateForm()">
-            <!-- Form fields here -->
+        <form id="registration-form" action="register.html" method="POST" onsubmit="return validateForm()">
             <label for="fullname">Full Name(*):</label>
             <input type="text" id="fullname" name="fullname" required>
     
@@ -362,4 +357,6 @@
         </form>
         <p>&copy; 2024 Echelon. All rights reserved.</p>
     </footer>
-    
+</body>
+
+</html>
