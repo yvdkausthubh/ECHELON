@@ -327,16 +327,16 @@
         </div>
     </div>
 
-    <!-- Footer -->
     <footer>
         <h2>Registration Form</h2>
-        <form id="registration-form" action="/submit-form" method="post" onsubmit="return validateForm()">
+        <form id="registration-form" action="{{ url_for('register') }}" method="POST" onsubmit="return validateForm()">
+            <!-- Form fields here -->
             <label for="fullname">Full Name(*):</label>
             <input type="text" id="fullname" name="fullname" required>
-
+    
             <label for="rollnumber">Roll Number(*):</label>
             <input type="text" id="rollnumber" name="rollnumber" required>
-
+    
             <label for="branch">Branch(*):</label>
             <select id="branch" name="branch" required>
                 <option value="ece">ECE</option>
@@ -349,58 +349,17 @@
                 <option value="civil">Civil</option>
                 <option value="eee">EEE</option>
             </select>
-
+    
             <label for="skills">Skills:</label>
             <textarea id="skills" name="skills" rows="4"></textarea>
-
+    
             <label for="reason">Why do you want to join the club(*):</label>
             <textarea id="reason" name="reason" rows="4" required></textarea>
-
+    
             <p><em>(*) indicates important fields to fill</em></p>
-            
+    
             <button type="submit">Submit</button>
         </form>
         <p>&copy; 2024 Echelon. All rights reserved.</p>
     </footer>
-
-    <!-- Popup Advertisement -->
-    <div id="popup-ad" class="popup-ad">
-        <img src="{{ url_for('static', filename='images/ad_image.jpeg') }}" alt="Advertisement">
-        <button id="close-btn" class="close-btn">X</button>
-    </div>
-
-    <script>
-        // Redirect to registration form when 'T' is pressed
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 't' || event.key === 'T') {
-                window.location.hash = '#registration-form';
-            }
-        });
-
-        // Form validation to ensure required fields are filled
-        function validateForm() {
-            const fullname = document.getElementById('fullname').value;
-            const rollnumber = document.getElementById('rollnumber').value;
-            const branch = document.getElementById('branch').value;
-            const reason = document.getElementById('reason').value;
-            
-            if (!fullname || !rollnumber || !branch || !reason) {
-                alert('Please fill all required fields.');
-                return false;
-            }
-            return true;
-        }
-
-        // Popup logic
-        window.onload = function () {
-            var popup = document.getElementById("popup-ad");
-            popup.style.display = "flex"; // Show the popup
-            var closeButton = document.getElementById("close-btn");
-            closeButton.onclick = function () {
-                popup.style.display = "none"; // Hide the popup when clicked
-            }
-        };
-    </script>
-</body>
-
-</html>
+    

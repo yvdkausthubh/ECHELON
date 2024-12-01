@@ -66,7 +66,7 @@
 
         .team-member img {
             width: 100%;
-            height: 200px; /* Ensure the photo is square */
+            height: 200px;
             object-fit: cover;
             border-radius: 10px;
         }
@@ -77,7 +77,6 @@
             color: white;
         }
 
-        /* Button Styling */
         .read-more-btn {
             background-color: #4CAF50;
             color: white;
@@ -92,7 +91,7 @@
 
         .read-more-btn:hover {
             background-color: #45a049;
-            transform: scale(1.05); /* Slightly enlarges the button */
+            transform: scale(1.05);
         }
 
         .read-more-btn:focus {
@@ -148,14 +147,14 @@
         <a href="{{ url_for('about') }}">About</a>
         <a href="{{ url_for('projects') }}">Projects</a>
         <a href="{{ url_for('gallery') }}">Gallery</a>
-        <a href="{{ url_for('team') }}">Team</a> <!-- New TEAM Menu -->
+        <a href="{{ url_for('team') }}">Team</a>
         <a href="{{ url_for('contact') }}">Contact</a>
     </nav>
 
     <h1>Meet Our Team</h1>
 
     <div class="team-container">
-        <!-- Team Member Entries -->
+        <!-- PS Neeraj -->
         <div class="team-member">
             <img src="{{ url_for('static', filename='images/ps_neeraj.png') }}" alt="PS Neeraj">
             <h3>PS Neeraj</h3>
@@ -163,20 +162,23 @@
             <button class="read-more-btn" onclick="openModal('PS Neeraj')">Read More</button>
         </div>
 
+        <!-- Y.V. Devi Kausthubh -->
         <div class="team-member">
-            <img src="{{ url_for('static', filename='images/yvd_kausthubh.jpeg') }}" alt="YVD Kausthubh">
-            <h3>YVD Kausthubh</h3>
-            <h3>(Project Head)</h3>
-            <button class="read-more-btn" onclick="openModal('YVD Kausthubh')">Read More</button>
+            <img src="{{ url_for('static', filename='images/yvd_kausthubh.jpeg') }}" alt="Y.V. Devi Kausthubh">
+            <h3>Y.V. Devi Kausthubh</h3>
+            <h3>(Projects Head)</h3>
+            <button class="read-more-btn" onclick="openModal('Y.V. Devi Kausthubh')">Read More</button>
         </div>
 
+        <!-- K Harshit -->
         <div class="team-member">
             <img src="{{ url_for('static', filename='images/k_harshit.jpeg') }}" alt="K Harshit">
             <h3>K Harshit</h3>
-            <h3>(Blogs Head)</h3>
+            <h3>(Projects Head)</h3>
             <button class="read-more-btn" onclick="openModal('K Harshit')">Read More</button>
         </div>
 
+        <!-- K V N Manoj -->
         <div class="team-member">
             <img src="{{ url_for('static', filename='images/kvn_manoj.jpeg') }}" alt="KVN Manoj">
             <h3>KVN Manoj</h3>
@@ -224,20 +226,84 @@
     <div id="modal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
-            <h2>Team Member Information</h2>
-            <p id="modal-description">More information will be displayed here.</p>
+            <h2 id="modal-title">Modal Title</h2>
+            <p><strong>LinkedIn:</strong> <a id="modal-linkedin" href="#" target="_blank">Visit Profile</a></p>
+            <p><strong>Projects:</strong> <span id="modal-projects">N/A</span></p>
+            <p><strong>Articles:</strong> <span id="modal-articles">N/A</span></p>
+            <p><strong>Research Papers:</strong> <span id="modal-research">N/A</span></p>
         </div>
     </div>
 
     <script>
-        function openModal(memberName) {
-            // Set dynamic content for the modal based on the member name
-            document.getElementById('modal-description').innerText = "Details about " + memberName;
-            document.getElementById('modal').style.display = "block";
+        const teamDetails = {
+            "PS Neeraj": {
+                linkedin: "https://www.linkedin.com/in/patibanda-sai-neeraj-607986291/",
+                projects: "10",
+                articles: "4 IOT",
+                research: "02"
+            },
+            "Y.V. Devi Kausthubh": {
+                linkedin: "https://www.linkedin.com/in/kausthubh-devi/",
+                projects: "10",
+                articles: "5 IOT , 3 VLSI",
+                research: "02"
+            },
+            "K Harshit": {
+                linkedin: "https://www.linkedin.com/in/harshit-k/",
+                projects: "3",
+                articles: "NA",
+                research: "NA"
+            },
+            "KVN Manoj": {
+                linkedin: "https://www.linkedin.com/in/kvn-manoj/",
+                projects: "05",
+                articles: "NA",
+                research: "NA"
+            },
+            "E Vinay Kumar": {
+                linkedin: "https://www.linkedin.com/in/evinay-kumar/",
+                projects: "02",
+                articles: "NA",
+                research: "NA"
+            },
+            "P Vijay": {
+                linkedin: "https://www.linkedin.com/in/p-vijay/",
+                projects: "NA",
+                articles: "NA",
+                research: "NA"
+            },
+            "Sankeerth": {
+                linkedin: "https://www.linkedin.com/in/sankeerth/",
+                projects: "NA",
+                articles: "NA",
+                research: "NA"
+            },
+            "K Akshith": {
+                linkedin: "https://www.linkedin.com/in/k-akshith/",
+                projects: "NA",
+                articles: "NA",
+                research: "NA"
+            },
+            "K Sai Praneeth": {
+                linkedin: "https://www.linkedin.com/in/k-sai-praneeth/",
+                projects: "01",
+                articles: "NA",
+                research: "NA"
+            }
+        };
+
+        function openModal(teamMember) {
+            const details = teamDetails[teamMember];
+            document.getElementById("modal-title").textContent = teamMember;
+            document.getElementById("modal-linkedin").href = details.linkedin;
+            document.getElementById("modal-projects").textContent = details.projects;
+            document.getElementById("modal-articles").textContent = details.articles;
+            document.getElementById("modal-research").textContent = details.research;
+            document.getElementById("modal").style.display = "block";
         }
 
         function closeModal() {
-            document.getElementById('modal').style.display = "none";
+            document.getElementById("modal").style.display = "none";
         }
     </script>
 </body>
